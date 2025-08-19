@@ -4,42 +4,61 @@
 - Guide meant for windows, but should-not be any different in Linux, just ignore the powershell comands.
 
 ### 1 - Set Working Directory
-`cd ~/.ssh`
+```
+cd ~/.ssh
+```
+```
+touch config
+```
 
-`touch config`
-
-### 2 - Creating & Adding Key
+### 2 - Creating Key
 
 > Generate Key
 
-`ssh-keygen -t ed25519 -C "orange@daraknet.cc"`
+```
+ssh-keygen -t ed25519 -C "purple@daraknet.cc"
+```
 
-> On Powershell
+> On Powershell **(Elevated Command)**
 
-`Get-Service -Name ssh-agent | Set-Service -StartupType Automatic` **(Elevated Command)**
-
-`Start-Service ssh-agent`
+```
+Get-Service -Name ssh-agent | Set-Service -StartupType Automatic
+```
+```
+Start-Service ssh-agent
+```
 
 > On Bash
 
-`eval "$(ssh-agent -s)"`
+```
+eval "$(ssh-agent -s)"
+```
 
 > On Fish
 
-`eval (ssh-agent -c)`
+```
+eval (ssh-agent -c)
+```
 
-
-Windows: `ssh-add C:\path\to\your\key`
-
-Unix: `ssh-add ~/.ssh/key`
+### 3 - Adding Key
+**Windows**
+```
+ssh-add C:\path\to\your\key
+```
+**Unix**
+```
+ssh-add ~/.ssh/key
+```
 
 > Then, to verify changes do
 
-`ssh-add -l`
+```
+ssh-add -l
+```
 
 _add .pub keys to GitHub, for Auth and Signing if want to sign using same key as well_
 
-### 3 - Configuration
+### 4 - Configuration
 
 > ~/.ssh/config
 
@@ -56,17 +75,23 @@ Host OTonGitHub
 
 > Test Configuration
 
-`ssh -T git@OTonGitHub`
+```
+ssh -T git@OTonGitHub
+```
 
 > Set username and email
 
-`git config --global user.name "OTonGitHub"`
+```
+git config --global user.name "OTonGitHub"
+```
 
-`git config --global user.name orange@daraknet.cc`
+```
+git config --global user.email purple@daraknet.cc
+```
 
 - _quotes not necessary for email_
 
-### 4 - Signing Commits
+### 5 - Signing Commits
 
 - First test if it works or not already.
 - IF private email is disabled, just unset email, and make sure all staged commits don't contain private email.
@@ -81,16 +106,24 @@ Host OTonGitHub
 
 `git config --global --unset gpg.format` *(skippable)*
 
-`git config --global gpg.format ssh`
+```
+git config --global gpg.format ssh
+```
 
-`git config --global user.signingkey ~/.ssh/OTonGitHub.pub`
+```
+git config --global user.signingkey ~/.ssh/OTonGitHub.pub
+```
 
-`git config --global commit.gpgsign true`
+```
+git config --global commit.gpgsign true
+```
 
 - Globally Set default Branch Name to "main"
-`git config --global init.defaultBranch main`
+```
+git config --global init.defaultBranch main
+```
 
-### 5 - Adding Repository
+### 6 - Adding Repository
 #### New Repository
 ```
 echo "# ProjectName" >> README.md
