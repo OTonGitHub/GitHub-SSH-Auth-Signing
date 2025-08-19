@@ -87,6 +87,9 @@ Host OTonGitHub
 
 `git config --global commit.gpgsign true`
 
+- Globally Set default Branch Name to "main"
+`git config --global init.defaultBranch main`
+
 ### 5 - Adding Repository
 #### New Repository
 ```
