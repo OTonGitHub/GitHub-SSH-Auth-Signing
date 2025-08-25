@@ -141,3 +141,15 @@ git remote add origin git@github.com:OTonGitHub/<REPOSITORY_NAME>.git
 git branch -M main
 git push -u origin main
 ```
+
+#### Troubleshooting Platforms like CodeBerg
+- Same process as above, just make sure to do
+```
+chmod 700 ~/.ssh
+```
+and then on the key
+```
+chdmod 600 ~/.ssh/MyKey
+```
+
+and also make sure, the config file is mostly the same, have to change only name, and hostname, keep username as git, add is a new config to existing config file
